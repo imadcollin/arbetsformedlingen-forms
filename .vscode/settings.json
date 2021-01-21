@@ -1,0 +1,13 @@
+{
+    "launch": {
+
+        "configurations": [],
+        "compounds": [],
+        "eslint.options": {
+            "ignorePattern": ["!src/*"],
+          },
+       "eslintConfig": {
+    "ignorePatterns": ["src/*", "!src/test.js"]
+  }
+    }
+}
