@@ -7,16 +7,17 @@ import * as yup from "yup";
 
 function App() {
   const schema = yup.object().shape({
-    namn: yup.string().required().length(60),
-    telefon: yup
-      .string()
-      .required("Phone number is required")
-      .matches(
-        /^([0]{1}|\+?[234]{3})([7-9]{1})([0|1]{1})([\d]{1})([\d]{7})$/g,
-        "Invalid phone number"
-      )
-      .max(15),
-    post: yup.string().email().required().max(60),
+    namn: yup.string().required().max(60),
+    // telefon: yup
+    //   .string()
+    //   .required("Phone number is required")
+    //   .matches(
+    //     /^([0]{1}|\+?[234]{3})([7-9]{1})([0|1]{1})([\d]{1})([\d]{7})$/g,
+    //     "Invalid phone number"
+    //   )
+    //   .max(15),
+    telefon: yup.number().positive().required(),
+    email: yup.string().email().required().max(60),
     handling: yup.string().optional(),
     birthday: yup.date().max(new Date()).max(4),
   });
@@ -28,10 +29,23 @@ function App() {
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
   });
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
+  const [country, setCountry] = useState("Select");
+  const [namn, setNamn] = useState("");
+  const [telefon, setTelefon] = useState("");
+  const [email, setEmail] = useState("");
+  const [handling, setHandling] = useState("");
+  const [birthday, setBirthday] = useState("");
   const onSubmit = (data) => console.log(data);
 
+  const getter = [
+    "Sverige",
+    "Tyskland",
+    "Danmark",
+    "Polen",
+    "Frankrike",
+    "Norge",
+    "Italien",
+  ];
   const config = {
     headers: { "Access-Control-Allow-Origin": "*" },
   };
@@ -56,12 +70,17 @@ function App() {
    *  POST
    ****************************************/
   const post = () => {
+    console.log("Post..");
     axios.defaults.baseURL = "/";
     axios
       .post("/api/samordningsnummer", {
         data: {
-          name,
-          surname,
+          namn,
+          telefon,
+          email,
+          handling,
+          birthday,
+          country,
         },
       })
       .then(function (response) {
@@ -71,43 +90,68 @@ function App() {
         console.log(error);
       });
   };
+
   return (
     <div className="App">
       <h1>Hello World</h1>
-      {console.log(data)}
+      Country{" "}
+      <select
+        value={country}
+        onChange={(e) => setCountry(e.currentTarget.value)}
+      >
+        {getter.map((ele) => (
+          <option key={ele} value={getter[ele]}>
+            {ele}
+          </option>
+        ))}
+      </select>
       <form onSubmit={handleSubmit(post)}>
+        namn{" "}
         <input
           type="text"
-          name="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          name="namn"
+          value={namn}
+          onChange={(e) => setNamn(e.target.value)}
           ref={register}
         />
+        <p>{errors.namn?.message}</p>
+        telefon{" "}
         <input
           type="text"
-          name="surname"
-          value={surname}
-          onChange={(e) => setSurname(e.target.value)}
-          ref={register({ required: true })}
+          name="telefon"
+          value={telefon}
+          onChange={(e) => setTelefon(e.target.value)}
+          ref={register}
         />
-        {errors.exampleRequired && <span>This field is required</span>}
-
-        <input type="submit" />
-      </form>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        namn <input type="text" name="namn" ref={register} />
-        <p>{errors.namn?.message}</p>
-        telefon <input type="text" name="telefon" ref={register} />
         <p>{errors.telefon?.message}</p>
-        post <input type="email" name="email" ref={register} />
+        post{" "}
+        <input
+          type="email"
+          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          ref={register}
+        />
         <p>{errors.post?.message}</p>
-        handling <input type="text" name="handling" ref={register} />
+        handling{" "}
+        <input
+          type="text"
+          name="handling"
+          value={handling}
+          onChange={(e) => setHandling(e.target.value)}
+          ref={register}
+        />
         <p>{errors.handling?.message}</p>
         <h2>Arendeuppgifter/Person</h2>
-        birthday <input type="dateOfBirth" name="birthday" ref={register} />
+        birthday{" "}
+        <input
+          type="dateOfBirth"
+          name="birthday"
+          value={birthday}
+          onChange={(e) => setBirthday(e.target.value)}
+          ref={register}
+        />
         <p>{errors.birthday?.message}</p>
-
-
         <input type="submit" />
       </form>
       );
