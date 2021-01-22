@@ -93,8 +93,9 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Hello World</h1>
-      Country{" "}
+      <h1>Arbetsformedlingen Forms</h1>
+      <h2>1. Dokumentuppgifter</h2>
+      <label> Country</label>
       <select
         value={country}
         onChange={(e) => setCountry(e.currentTarget.value)}
@@ -106,7 +107,7 @@ function App() {
         ))}
       </select>
       <form onSubmit={handleSubmit(post)}>
-        namn{" "}
+        <label> Namn</label>
         <input
           type="text"
           name="namn"
@@ -114,8 +115,7 @@ function App() {
           onChange={(e) => setNamn(e.target.value)}
           ref={register}
         />
-        <p>{errors.namn?.message}</p>
-        telefon{" "}
+        <p>{errors.namn?.message}</p> <label> Telefon</label>
         <input
           type="text"
           name="telefon"
@@ -124,7 +124,7 @@ function App() {
           ref={register}
         />
         <p>{errors.telefon?.message}</p>
-        post{" "}
+        <label> Post</label>
         <input
           type="email"
           name="email"
@@ -132,8 +132,7 @@ function App() {
           onChange={(e) => setEmail(e.target.value)}
           ref={register}
         />
-        <p>{errors.post?.message}</p>
-        handling{" "}
+        <p>{errors.post?.message}</p> <label> Handling</label>
         <input
           type="text"
           name="handling"
@@ -142,8 +141,8 @@ function App() {
           ref={register}
         />
         <p>{errors.handling?.message}</p>
-        <h2>Arendeuppgifter/Person</h2>
-        birthday{" "}
+        <h2>2. Arendeuppgifter</h2>
+        <label> Birthday</label>
         <input
           type="dateOfBirth"
           name="birthday"
