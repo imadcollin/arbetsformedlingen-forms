@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import logo from "./images/2.jpg";
 
 function App() {
   const schema = yup.object().shape({
@@ -93,7 +94,10 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Arbetsformedlingen Forms</h1>
+      <div class="header">
+        <img src={logo} alt="Logo" />
+        <span class="title">Arbetsformedlingen Forms</span>
+      </div>
       <h2>1. Dokumentuppgifter</h2>
       <label> Country</label>
       <select
