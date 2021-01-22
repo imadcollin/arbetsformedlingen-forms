@@ -42,12 +42,12 @@ npm build
 
 ## Interfaces 
 
-<img width="105" alt="screen shot 2017-02-24 at 17 16 10" src="https://user-images.githubusercontent.com/15781725/105489095-fb996400-5cb2-11eb-98f9-c5e06e09c800.png">
+<img width="105" alt="screen shot 2017-02-24 at 17 16 10" src="https://user-images.githubusercontent.com/15781725/105490030-73b45980-5cb4-11eb-8bf7-e6cdf15faa3f.png">
 ---
 ----
-<img width="105" alt="screen shot 2017-02-24 at 17 16 40" src="https://user-images.githubusercontent.com/15781725/105489450-867a5e80-5cb3-11eb-8f45-eb5f3aeff47a.png">
+<img width="105" alt="screen shot 2017-02-24 at 17 16 40" src="https://user-images.githubusercontent.com/15781725/105490075-84fd6600-5cb4-11eb-9348-8305a8e95ec3.png">
 ---
 
 ----
-<img width="105" alt="screen shot 2017-02-24 at 17 16 40" src="https://user-images.githubusercontent.com/15781725/105489560-b590d000-5cb3-11eb-93ee-78cd7bf08c2b.png">
+<img width="105" alt="screen shot 2017-02-24 at 17 16 40" src="https://user-images.githubusercontent.com/15781725/105490079-875fc000-5cb4-11eb-81f7-196e87c5e269.png">
 
