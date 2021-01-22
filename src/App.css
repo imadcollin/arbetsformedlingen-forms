@@ -154,3 +154,33 @@ p {
   color: #bf1650;
   font-size: larger;
 }
+.header img {
+  /* float: left; */
+  width: 100px;
+  height: 100px;
+  background: #555;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  margin-bottom: 75px;
+}
+.title {
+  display: flex;
+
+  color: aliceblue;
+  font-size: 35px;
+  top: 30px;
+  margin-bottom: 100px;
+  margin-top: 35px;
+}
+@media (max-width: 400px) {
+  .title {
+    font-size: 20px;
+  }
+  h2 {
+    font-size: large;
+  }
+}
