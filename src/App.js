@@ -21,6 +21,7 @@ function App() {
     email: yup.string().email().required().max(60),
     handling: yup.string().optional(),
     birthday: yup.date().max(new Date()).max(4),
+    faststalltId: yup.string().ensure().required("Please Select One Option"),
   });
 
   /****************************************
@@ -36,6 +37,7 @@ function App() {
   const [email, setEmail] = useState("");
   const [handling, setHandling] = useState("");
   const [birthday, setBirthday] = useState("");
+  const [faststalltId, setFaststalltId] = useState("");
   const onSubmit = (data) => console.log(data);
 
   const getter = [
@@ -47,6 +49,8 @@ function App() {
     "Norge",
     "Italien",
   ];
+
+  const identity = ["PASS", "NATIONELLT ID", "ANNAN HANDLING", "NEJ"];
   const config = {
     headers: { "Access-Control-Allow-Origin": "*" },
   };
@@ -94,9 +98,9 @@ function App() {
 
   return (
     <div className="App">
-      <div class="header">
+      <div className="header">
         <img src={logo} alt="Logo" />
-        <span class="title">Arbetsformedlingen Forms</span>
+        <span className="title">Arbetsformedlingen Forms</span>
       </div>
       <h2>1. Dokumentuppgifter</h2>
       <label> Country</label>
@@ -155,6 +159,20 @@ function App() {
           ref={register}
         />
         <p>{errors.birthday?.message}</p>
+        <h2>3 Arendeuppgifter</h2>
+        FaststalltId
+        <select
+          value={faststalltId}
+          onChange={(e) => setFaststalltId(e.currentTarget.value)}
+        >
+          <option value={faststalltId}>{faststalltId}</option>
+          {identity.map((ele) => (
+            <option key={ele} value={identity[ele]}>
+              {ele}
+            </option>
+          ))}
+        </select>
+        <p>{errors.faststalltId?.message}</p>
         <input type="submit" />
       </form>
       );
