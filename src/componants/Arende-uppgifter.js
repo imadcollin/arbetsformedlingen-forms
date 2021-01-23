@@ -3,8 +3,8 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Radio } from "@material-ui/core";
-
+import { Radio, TextareaAutosize } from "@material-ui/core";
+import "./Arenda.css";
 export const Arendeuppgifter = () => {
   return (
     <Formik
@@ -15,6 +15,7 @@ export const Arendeuppgifter = () => {
         picked: "",
         surname: "",
         firstname: "",
+        additionalName: "",
       }}
       /*
       Taken from:
@@ -89,6 +90,9 @@ export const Arendeuppgifter = () => {
           .required("Required"),
 
         firstname: Yup.string().default("--").nullable(true),
+        additionalName: Yup.string()
+          .max(200, "should not exceed 200 characters")
+          .optional("Other information.. "),
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -161,6 +165,16 @@ export const Arendeuppgifter = () => {
           />
           {formik.touched.firstname && formik.errors.firstname ? (
             <div>{formik.errors.firstname}</div>
+          ) : null}
+
+          <label htmlFor="additionalName"> Additional Information </label>
+          <textarea
+            id="additionalName"
+            type="text"
+            {...formik.getFieldProps("additionalName")}
+          />
+          {formik.touched.additionalName && formik.errors.additionalName ? (
+            <div>{formik.errors.additionalName}</div>
           ) : null}
           <button type="submit">Submit</button>
         </Form>
