@@ -135,19 +135,14 @@ export const Arendeuppgifter = () => {
           {formik.touched.dayOfBirth && formik.errors.dayOfBirth ? (
             <div>{formik.errors.dayOfBirth}</div>
           ) : null}
-
-          <div>Gender </div>
+          <label htmlFor="radio"> Gender </label>
           <div role="group">
             <div>
               Male
-              <Field type="radio" name="picked" value="One" />
+              <Field type="radio" className="radio" name="picked" value="One" />
               Female
-              <Field type="radio" name="picked" value="Two" />
+              <Field type="radio" className="radio" name="picked" value="Two" />
             </div>
-          </div>
-          <div>
-            Picked:
-            {formik.values.picked}
           </div>
 
           <label htmlFor="Name"> Sure name </label>
@@ -184,9 +179,11 @@ export const Arendeuppgifter = () => {
           <CountryDropdown
             name="country"
             value={formik.values.country}
-            onChange={formik.handleChange}
+            // onChange={formik.handleChange}
+            onChange={(_, e) => formik.handleChange(e)}
             onBlur={formik.handleBlur}
           />
+
           <button type="submit">Submit</button>
         </Form>
       )}
