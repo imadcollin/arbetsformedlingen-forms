@@ -5,6 +5,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Radio, TextareaAutosize } from "@material-ui/core";
 import "./Arenda.css";
+import { CountryDropdown } from "react-country-region-selector";
+
 export const Arendeuppgifter = () => {
   return (
     <Formik
@@ -16,6 +18,7 @@ export const Arendeuppgifter = () => {
         surname: "",
         firstname: "",
         additionalName: "",
+        country: "Select Country",
       }}
       /*
       Taken from:
@@ -176,6 +179,14 @@ export const Arendeuppgifter = () => {
           {formik.touched.additionalName && formik.errors.additionalName ? (
             <div>{formik.errors.additionalName}</div>
           ) : null}
+
+          <label htmlFor="placeOfBirth">Place Of Birth</label>
+          <CountryDropdown
+            name="country"
+            value={formik.values.country}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
           <button type="submit">Submit</button>
         </Form>
       )}
