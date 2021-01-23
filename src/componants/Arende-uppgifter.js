@@ -3,11 +3,19 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Radio } from "@material-ui/core";
 
 export const Arendeuppgifter = () => {
   return (
     <Formik
-      initialValues={{ yearOfBirth: "", monthOfBirth: "", dayOfBirth: "" }}
+      initialValues={{
+        yearOfBirth: "",
+        monthOfBirth: "",
+        dayOfBirth: "",
+        picked: "",
+        surname: "",
+        firstname: "",
+      }}
       /*
       Taken from:
        https://stackoverflow.com/questions/65135707/validate-field-in-yup-based-on-multiple-related-field-values-with-yup-ref-and-t
@@ -76,6 +84,11 @@ export const Arendeuppgifter = () => {
           .min(2, "Invalid")
           .max(2, "Invalid")
           .required("Required"),
+        surname: Yup.string()
+          .max(60, "Must not exceed 60 characters")
+          .required("Required"),
+
+        firstname: Yup.string().default("--").nullable(true),
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -116,6 +129,39 @@ export const Arendeuppgifter = () => {
             <div>{formik.errors.dayOfBirth}</div>
           ) : null}
 
+          <div>Gender </div>
+          <div role="group">
+            <div>
+              Male
+              <Field type="radio" name="picked" value="One" />
+              Female
+              <Field type="radio" name="picked" value="Two" />
+            </div>
+          </div>
+          <div>
+            Picked:
+            {formik.values.picked}
+          </div>
+
+          <label htmlFor="Name"> Sure name </label>
+          <Field
+            id="surname"
+            type="text"
+            {...formik.getFieldProps("surname")}
+          />
+          {formik.touched.surname && formik.errors.surname ? (
+            <div>{formik.errors.surname}</div>
+          ) : null}
+
+          <label htmlFor="Name"> First name </label>
+          <Field
+            id="firstname"
+            type="text"
+            {...formik.getFieldProps("firstname")}
+          />
+          {formik.touched.firstname && formik.errors.firstname ? (
+            <div>{formik.errors.firstname}</div>
+          ) : null}
           <button type="submit">Submit</button>
         </Form>
       )}
