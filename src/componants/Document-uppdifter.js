@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik } from "formik";
+import { Formik, Form, Field } from 'formik';
 import * as Yup from "yup";
 
 export const Dokumentuppgifter = () => {
@@ -26,14 +26,14 @@ export const Dokumentuppgifter = () => {
       }}
     >
       {(formik) => (
-        <form onSubmit={formik.handleSubmit}>
+        <Form onSubmit={formik.handleSubmit}>
           <label htmlFor="Name"> Name</label>
-          <input id="namn" type="text" {...formik.getFieldProps("namn")} />
+          <Field id="namn" type="text" {...formik.getFieldProps("namn")} />
           {formik.touched.namn && formik.errors.namn ? (
             <div>{formik.errors.namn}</div>
           ) : null}
           <label htmlFor="telefon">Telefon</label>
-          <input
+          <Field
             id="telefon"
             type="text"
             {...formik.getFieldProps("telefon")}
@@ -42,13 +42,13 @@ export const Dokumentuppgifter = () => {
             <div>{formik.errors.telefon}</div>
           ) : null}
           <label htmlFor="email">Email Address</label>
-          <input id="email" type="email" {...formik.getFieldProps("email")} />
+          <Field id="email" type="email" {...formik.getFieldProps("email")} />
           {formik.touched.email && formik.errors.email ? (
             <div>{formik.errors.email}</div>
           ) : null}
           <label htmlFor="handling">Handling</label>
 
-          <input
+          <Field
             id="handling"
             type="text"
             {...formik.getFieldProps("handling")}
@@ -57,7 +57,7 @@ export const Dokumentuppgifter = () => {
             <div>{formik.errors.handling}</div>
           ) : null}
           <button type="submit">Submit</button>
-        </form>
+        </Form>
       )}
     </Formik>
   );
