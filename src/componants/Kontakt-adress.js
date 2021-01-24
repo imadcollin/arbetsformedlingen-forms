@@ -12,6 +12,7 @@ export const Kontaktadress = () => {
         country: "",
         region: "",
         street: "",
+        apartment_no: "",
       }}
       validationSchema={Yup.object({
         c_o_address: Yup.string()
@@ -23,6 +24,11 @@ export const Kontaktadress = () => {
         street: Yup.string()
           .max(35, "Must not exceed 35 characters")
           .required("Required."),
+        apartment_no: Yup.string()
+          .matches(/^[0-9]+$/, "Must be only digits")
+          .min(4, "Must be 4 digits")
+          .max(4, "Must be 4 digits")
+          .required("Apartment number is required"),
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -72,6 +78,16 @@ export const Kontaktadress = () => {
           <Field id="street" type="text" {...formik.getFieldProps("street")} />
           {formik.touched.street && formik.errors.street ? (
             <div>{formik.errors.street}</div>
+          ) : null}
+
+          <label htmlFor="apartment_no"> Apartment Number </label>
+          <Field
+            id="apartment_no"
+            type="text"
+            {...formik.getFieldProps("apartment_no")}
+          />
+          {formik.touched.apartment_no && formik.errors.apartment_no ? (
+            <div>{formik.errors.apartment_no}</div>
           ) : null}
 
           <button type="submit">Submit</button>
