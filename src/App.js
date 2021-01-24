@@ -5,7 +5,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import logo from "./images/2.jpg";
-
+import Dokumentuppgifter from "./componants/Document-uppdifter";
+import Arendeuppgifter from "./componants/Arende-uppgifter";
+import Kontaktadress from "./componants/Kontakt-adress";
+import Ovrigt from "./componants/Ovrigt";
 function App() {
   const schema = yup.object().shape({
     namn: yup.string().required().max(60),
@@ -96,6 +99,19 @@ function App() {
       });
   };
 
+  const documentCallback = (values) => {
+    console.log("test");
+    console.log(values);
+  };
+
+  const arendaCallback = (values) => {
+    console.log("test");
+    console.log(values);
+  };
+  const overigtCallback = (values) => {
+    console.log("test");
+    console.log(values);
+  };
   return (
     <div className="App">
       <div className="header">
@@ -114,65 +130,20 @@ function App() {
           </option>
         ))}
       </select>
+      <Dokumentuppgifter formCallback={documentCallback}></Dokumentuppgifter>
+      <Arendeuppgifter arendaCallback={arendaCallback}></Arendeuppgifter>
+      <Kontaktadress ></Kontaktadress>
+      <Ovrigt overigtCallback={overigtCallback}></Ovrigt>
       <form onSubmit={handleSubmit(post)}>
-        <label> Namn</label>
+        <h1>App</h1>
+        <label> To be removed </label>
         <input
           type="text"
           name="namn"
           value={namn}
           onChange={(e) => setNamn(e.target.value)}
           ref={register}
-        />
-        <p>{errors.namn?.message}</p> <label> Telefon</label>
-        <input
-          type="text"
-          name="telefon"
-          value={telefon}
-          onChange={(e) => setTelefon(e.target.value)}
-          ref={register}
-        />
-        <p>{errors.telefon?.message}</p>
-        <label> Post</label>
-        <input
-          type="email"
-          name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          ref={register}
-        />
-        <p>{errors.post?.message}</p> <label> Handling</label>
-        <input
-          type="text"
-          name="handling"
-          value={handling}
-          onChange={(e) => setHandling(e.target.value)}
-          ref={register}
-        />
-        <p>{errors.handling?.message}</p>
-        <h2>2. Arendeuppgifter</h2>
-        <label> Birthday</label>
-        <input
-          type="dateOfBirth"
-          name="birthday"
-          value={birthday}
-          onChange={(e) => setBirthday(e.target.value)}
-          ref={register}
-        />
-        <p>{errors.birthday?.message}</p>
-        <h2>3 Arendeuppgifter</h2>
-        FaststalltId
-        <select
-          value={faststalltId}
-          onChange={(e) => setFaststalltId(e.currentTarget.value)}
-        >
-          <option value={faststalltId}>{faststalltId}</option>
-          {identity.map((ele) => (
-            <option key={ele} value={identity[ele]}>
-              {ele}
-            </option>
-          ))}
-        </select>
-        <p>{errors.faststalltId?.message}</p>
+        />    
         <input type="submit" />
       </form>
       );
