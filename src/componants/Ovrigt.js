@@ -8,15 +8,17 @@ export const Ovrigt = () => {
       initialValues={{
         id: "",
         underlagId: "",
+        upplysning: "",
       }}
       validationSchema={Yup.object({
         id: Yup.string().required("Required, select and ID"),
         underlagId: Yup.string()
           .max(80, "Maximum 80 characters")
           .when("id", {
-            is: (value) => (value = "NEJ" || "PASS"),
+            is: (value) => value === "NEJ" || value === "PASS",
             then: Yup.string().required("Required..."),
           }),
+        upplysning: Yup.string().max(200, "Maximum 200 characters").optional(),
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -58,6 +60,16 @@ export const Ovrigt = () => {
           ) : null}
           {formik.touched.underlagId && formik.errors.underlagId ? (
             <div>{formik.errors.underlagId}</div>
+          ) : null}
+
+          <label htmlFor="upplysning">Additional Information (Optional)</label>
+          <textarea
+            id="upplysning"
+            type="text"
+            {...formik.getFieldProps("upplysning")}
+          />
+          {formik.touched.upplysning && formik.errors.upplysning ? (
+            <div>{formik.errors.upplysning}</div>
           ) : null}
           <button type="submit">Submit</button>
         </Form>
