@@ -7,9 +7,16 @@ export const Ovrigt = () => {
     <Formik
       initialValues={{
         id: "",
+        underlagId: "",
       }}
       validationSchema={Yup.object({
         id: Yup.string().required("Required, select and ID"),
+        underlagId: Yup.string()
+          .max(80, "Maximum 80 characters")
+          .when("id", {
+            is: (value) => (value = "NEJ" || "PASS"),
+            then: Yup.string().required("Required..."),
+          }),
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -37,6 +44,20 @@ export const Ovrigt = () => {
           </select>
           {formik.touched.id && formik.errors.id ? (
             <div>{formik.errors.id}</div>
+          ) : null}
+
+          {formik.values.id === "NEJ" || formik.values.id === "PASS" ? (
+            <div>
+              <label htmlFor="underlagId"> Underlag ID </label>
+              <Field
+                id="underlagId"
+                type="text"
+                {...formik.getFieldProps("underlagId")}
+              />
+            </div>
+          ) : null}
+          {formik.touched.underlagId && formik.errors.underlagId ? (
+            <div>{formik.errors.underlagId}</div>
           ) : null}
           <button type="submit">Submit</button>
         </Form>
