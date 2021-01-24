@@ -106,6 +106,8 @@ export const Arendeuppgifter = () => {
     >
       {(formik) => (
         <Form onSubmit={formik.handleSubmit}>
+          <h2>2. Arendeuppgifter</h2>
+
           <label htmlFor="yearOfBirth">Year Of Birth</label>
           <Field
             id="yearOfBirth"
@@ -165,7 +167,10 @@ export const Arendeuppgifter = () => {
             <div>{formik.errors.firstname}</div>
           ) : null}
 
-          <label htmlFor="additionalName"> Additional Information </label>
+          <label htmlFor="additionalName">
+            {" "}
+            Additional Information (Optional)
+          </label>
           <textarea
             id="additionalName"
             type="text"
