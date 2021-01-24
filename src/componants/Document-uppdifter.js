@@ -1,8 +1,8 @@
 import React from "react";
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 
-export const Dokumentuppgifter = ({documentCallback}) => {
+export const Dokumentuppgifter = ({ documentCallback }) => {
   return (
     <Formik
       initialValues={{ namn: "", telefon: "", email: "", handling: "" }}
@@ -13,14 +13,21 @@ export const Dokumentuppgifter = ({documentCallback}) => {
         telefon: Yup.string()
           .max(15, "Must be 15 characters or less")
           .required("Required"),
+        // telefon: yup
+        //   .string()
+        //   .required("Phone number is required")
+        //   .matches(
+        //     /^([0]{1}|\+?[234]{3})([7-9]{1})([0|1]{1})([\d]{1})([\d]{7})$/g,
+        //     "Invalid phone number"
+        //   )
+        //   .max(15),
         email: Yup.string().email("Invalid email address").required("Required"),
         handling: Yup.string()
           .max(15, "Must be 15 characters or less")
           .optional(),
       })}
       onSubmit={(values, { setSubmitting }) => {
-       
-        documentCallback(values)
+        documentCallback(values);
       }}
     >
       {(formik) => (
@@ -56,7 +63,6 @@ export const Dokumentuppgifter = ({documentCallback}) => {
           ) : null}
           <button type="submit">NEXT</button>
           {/* <button onClick={()=>test("testing")}>click</button> */}
-
         </Form>
       )}
     </Formik>
