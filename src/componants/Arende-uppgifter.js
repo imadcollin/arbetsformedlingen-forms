@@ -7,7 +7,7 @@ import { Radio, TextareaAutosize } from "@material-ui/core";
 import "./Arenda.css";
 import { CountryDropdown } from "react-country-region-selector";
 
-export const Arendeuppgifter = () => {
+export const Arendeuppgifter = ({arendaCallback}) => {
   return (
     <Formik
       initialValues={{
@@ -98,10 +98,7 @@ export const Arendeuppgifter = () => {
           .optional("Other information.. "),
       })}
       onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
+        arendaCallback(values)
       }}
     >
       {(formik) => (
