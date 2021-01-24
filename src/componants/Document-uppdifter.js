@@ -56,7 +56,7 @@ export const Dokumentuppgifter = () => {
           {formik.touched.handling && formik.errors.handling ? (
             <div>{formik.errors.handling}</div>
           ) : null}
-          <button type="submit">Submit</button>
+          <button type="submit">NEXT</button>
         </Form>
       )}
     </Formik>

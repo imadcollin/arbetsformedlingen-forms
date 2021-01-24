@@ -71,7 +71,7 @@ export const Ovrigt = () => {
           {formik.touched.upplysning && formik.errors.upplysning ? (
             <div>{formik.errors.upplysning}</div>
           ) : null}
-          <button type="submit">Submit</button>
+          <button type="submit">NEXT</button>
         </Form>
       )}
     </Formik>

@@ -189,7 +189,7 @@ export const Arendeuppgifter = () => {
             onBlur={formik.handleBlur}
           />
 
-          <button type="submit">Submit</button>
+          <button type="submit">NEXT </button>
         </Form>
       )}
     </Formik>

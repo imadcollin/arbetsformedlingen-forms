@@ -120,7 +120,7 @@ export const Kontaktadress = () => {
             <div>{formik.errors.post_ort}</div>
           ) : null}
 
-          <button type="submit">Submit</button>
+          <button type="submit">NEXT</button>
         </Form>
       )}
     </Formik>
