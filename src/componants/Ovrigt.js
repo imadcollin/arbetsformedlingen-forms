@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 
-export const Ovrigt = () => {
+export const Ovrigt = ({overigtCallback}) => {
   return (
     <Formik
       initialValues={{
@@ -21,10 +21,7 @@ export const Ovrigt = () => {
         upplysning: Yup.string().max(200, "Maximum 200 characters").optional(),
       })}
       onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
+        overigtCallback(values)
       }}
     >
       {(formik) => (
