@@ -3,7 +3,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 
-export const Kontaktadress = () => {
+export const Kontaktadress = ({kontaktCallback}) => {
   return (
     <Formik
       initialValues={{
@@ -41,10 +41,7 @@ export const Kontaktadress = () => {
           .required("Required"),
       })}
       onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
+        kontaktCallback(values)
       }}
     >
       {(formik) => (
