@@ -112,6 +112,10 @@ function App() {
     console.log("test");
     console.log(values);
   };
+  const kontaktCallback = (values) => {
+    console.log("test");
+    console.log(values);
+  };
   return (
     <div className="App">
       <div className="header">
@@ -132,7 +136,7 @@ function App() {
       </select>
       <Dokumentuppgifter formCallback={documentCallback}></Dokumentuppgifter>
       <Arendeuppgifter arendaCallback={arendaCallback}></Arendeuppgifter>
-      <Kontaktadress ></Kontaktadress>
+      <Kontaktadress kontaktCallback={kontaktCallback}></Kontaktadress>
       <Ovrigt overigtCallback={overigtCallback}></Ovrigt>
       <form onSubmit={handleSubmit(post)}>
         <h1>App</h1>
@@ -143,7 +147,7 @@ function App() {
           value={namn}
           onChange={(e) => setNamn(e.target.value)}
           ref={register}
-        />    
+        />
         <input type="submit" />
       </form>
       );
