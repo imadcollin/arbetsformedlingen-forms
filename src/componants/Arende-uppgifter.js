@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import DatePicker from "react-datepicker";
@@ -7,7 +7,7 @@ import { Radio, TextareaAutosize } from "@material-ui/core";
 import "./Arenda.css";
 import { CountryDropdown } from "react-country-region-selector";
 
-export const Arendeuppgifter = ({arendaCallback}) => {
+export const Arendeuppgifter = ({ arendaCallback }) => {
   return (
     <Formik
       initialValues={{
@@ -41,14 +41,6 @@ export const Arendeuppgifter = ({arendaCallback}) => {
 
         monthOfBirth: Yup.string()
           .matches(/^(0[1-9]|1[012])$/, "Invalid Month")
-          .test("dobM", "Invalid Month", (value) => {
-            if (value < 1 || value > 12) {
-              return false;
-            }
-            return true;
-          })
-          .min(2, "Invalid")
-          .max(2, "Invalid")
           .required("Required"),
 
         dayOfBirth: Yup.string()
@@ -92,13 +84,14 @@ export const Arendeuppgifter = ({arendaCallback}) => {
           .max(60, "Must not exceed 60 characters")
           .required("Required"),
 
-        firstname: Yup.string().default("--").nullable(true),
+        firstname: Yup.string().optional(),
         additionalName: Yup.string()
           .max(200, "should not exceed 200 characters")
           .optional("Other information.. "),
       })}
       onSubmit={(values, { setSubmitting }) => {
-        arendaCallback(values)
+        values.firstname = values.firstname === "" ? "---" : values.firstname;
+        arendaCallback(values);
       }}
     >
       {(formik) => (
@@ -154,7 +147,7 @@ export const Arendeuppgifter = ({arendaCallback}) => {
             <div>{formik.errors.surname}</div>
           ) : null}
 
-          <label htmlFor="Name"> First name </label>
+          <label htmlFor="firstname"> First name (Optional)</label>
           <Field
             id="firstname"
             type="text"
