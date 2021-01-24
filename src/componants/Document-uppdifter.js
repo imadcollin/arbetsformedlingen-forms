@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from "yup";
 
-export const Dokumentuppgifter = () => {
+export const Dokumentuppgifter = ({documentCallback}) => {
   return (
     <Formik
       initialValues={{ namn: "", telefon: "", email: "", handling: "" }}
@@ -19,10 +19,8 @@ export const Dokumentuppgifter = () => {
           .optional(),
       })}
       onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
+       
+        documentCallback(values)
       }}
     >
       {(formik) => (
@@ -57,6 +55,8 @@ export const Dokumentuppgifter = () => {
             <div>{formik.errors.handling}</div>
           ) : null}
           <button type="submit">NEXT</button>
+          {/* <button onClick={()=>test("testing")}>click</button> */}
+
         </Form>
       )}
     </Formik>
