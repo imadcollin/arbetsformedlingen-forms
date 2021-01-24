@@ -6,7 +6,13 @@ import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 export const Kontaktadress = () => {
   return (
     <Formik
-      initialValues={{ c_o_address: "", ort: "", country: "", region: "" }}
+      initialValues={{
+        c_o_address: "",
+        ort: "",
+        country: "",
+        region: "",
+        street: "",
+      }}
       validationSchema={Yup.object({
         c_o_address: Yup.string()
           .max(35, "Must not exceed 35 characters")
@@ -14,6 +20,9 @@ export const Kontaktadress = () => {
         ort: Yup.string()
           .max(35, "Must not exceed 35 characters")
           .required("Required"),
+        street: Yup.string()
+          .max(35, "Must not exceed 35 characters")
+          .required("Required."),
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -24,6 +33,8 @@ export const Kontaktadress = () => {
     >
       {(formik) => (
         <Form onSubmit={formik.handleSubmit}>
+          <h2>3. Kontaktadress</h2>
+
           <label htmlFor="c_o_address"> C/O (Optional)</label>
           <Field
             id="c_o_address"
@@ -56,6 +67,12 @@ export const Kontaktadress = () => {
               onBlur={formik.handleBlur}
             />
           </div>
+
+          <label htmlFor="street"> Street </label>
+          <Field id="street" type="text" {...formik.getFieldProps("street")} />
+          {formik.touched.street && formik.errors.street ? (
+            <div>{formik.errors.street}</div>
+          ) : null}
 
           <button type="submit">Submit</button>
         </Form>
