@@ -40,7 +40,7 @@ export const Kontaktadress = ({ kontaktCallback }) => {
           .max(27, "Must not exceed 27 characters")
           .required("Required"),
       })}
-      onSubmit={(values, { setSubmitting }) => {
+      onSubmit={(values) => {
         kontaktCallback(values);
       }}
     >
