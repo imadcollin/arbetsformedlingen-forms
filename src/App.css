@@ -103,7 +103,9 @@ button {
 input[type="submit"]:hover {
   background: #bf1650;
 }
-
+button[type="submit"]:hover {
+  background: #bf1650;
+}
 input[type="button"]:active,
 input[type="submit"]:active {
   transition: 0.3s all;
@@ -131,7 +133,7 @@ input[type="submit"] {
 }
 
 form {
-  margin-bottom: 400px;
+  margin-bottom: 40px;
 }
 
 .container {
