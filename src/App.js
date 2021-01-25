@@ -16,7 +16,12 @@ function App() {
 
   const [country, setCountry] = useState("Select");
   const [show, setShow] = useState({ a: true, b: false, c: false, d: false });
-
+  const [fieldsCollector, setFieldsCollector] = useState({
+    dokumentuppgifter: {},
+    arendeuppgifter: {},
+    kontaktadress: {},
+    ovrigt: {},
+  });
   const getter = [
     "Sverige",
     "Tyskland",
@@ -50,14 +55,11 @@ function App() {
   /****************************************
    *  POST
    ****************************************/
-  const post = () => {
-    console.log("Post..");
+  const post = (data) => {
     axios.defaults.baseURL = "/";
     axios
       .post("/api/samordningsnummer", {
-        data: {
-          name: "namn",
-        },
+        data: data,
       })
       .then(function (response) {
         console.log(response);
@@ -68,7 +70,8 @@ function App() {
   };
 
   const documentCallback = (values) => {
-    console.log(values);
+    fieldsCollector.dokumentuppgifter = values;
+
     show.a = false;
     show.b = true;
 
@@ -78,7 +81,8 @@ function App() {
   };
 
   const arendaCallback = (values) => {
-    console.log(values);
+    fieldsCollector.arendeuppgifter = values;
+
     show.b = false;
     show.c = true;
     setShow((prevState) => ({
@@ -87,7 +91,7 @@ function App() {
   };
 
   const kontaktCallback = (values) => {
-    console.log(values);
+    fieldsCollector.kontaktadress = values;
     show.c = false;
     show.d = true;
 
@@ -97,10 +101,10 @@ function App() {
   };
 
   const overigtCallback = (values) => {
-    console.log(values);
+    fieldsCollector.ovrigt = values;
 
     /*........SUBMIT........*/
-    post();
+    post(fieldsCollector);
   };
   return (
     <div className="App">
