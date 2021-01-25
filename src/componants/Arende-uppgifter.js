@@ -1,11 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { Radio, TextareaAutosize } from "@material-ui/core";
 import "./Arenda.css";
-import "./shared.css"
+import "./shared.css";
 import { CountryDropdown } from "react-country-region-selector";
 
 export const Arendeuppgifter = ({ arendaCallback }) => {
@@ -50,11 +47,6 @@ export const Arendeuppgifter = ({ arendaCallback }) => {
               return false;
             }
 
-            // Check months with less than 31 days - DOESNT WORK
-            // 4. April
-            // 6. June
-            // 9. September
-            // 11. November
             if (
               (Yup.ref("dobM") == 4 ||
                 Yup.ref("dobM") == 6 ||
@@ -65,7 +57,6 @@ export const Arendeuppgifter = ({ arendaCallback }) => {
               return false;
             }
 
-            // If February - DOESNT WORK
             if (Yup.ref("dobM") == 2) {
               const isLeapYear =
                 Yup.ref("dobY") % 4 == 0 &&
@@ -175,7 +166,6 @@ export const Arendeuppgifter = ({ arendaCallback }) => {
           <CountryDropdown
             name="country"
             value={formik.values.country}
-            // onChange={formik.handleChange}
             onChange={(_, e) => formik.handleChange(e)}
             onBlur={formik.handleBlur}
           />
