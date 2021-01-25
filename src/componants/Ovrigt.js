@@ -68,7 +68,7 @@ export const Ovrigt = ({overigtCallback}) => {
           {formik.touched.upplysning && formik.errors.upplysning ? (
             <div>{formik.errors.upplysning}</div>
           ) : null}
-          <button type="submit">NEXT</button>
+          <button type="submit">SUBMIT</button>
         </Form>
       )}
     </Formik>

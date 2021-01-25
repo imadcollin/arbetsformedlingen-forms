@@ -98,6 +98,9 @@ function App() {
 
   const overigtCallback = (values) => {
     console.log(values);
+
+    /*........SUBMIT........*/
+    post();
   };
   return (
     <div className="App">
@@ -107,23 +110,24 @@ function App() {
       </div>
       <h1>App</h1>
 
-      <h2>1. Dokumentuppgifter</h2>
-      <label> Country</label>
-      <select
-        value={country}
-        onChange={(e) => setCountry(e.currentTarget.value)}
-      >
-        {getter.map((ele) => (
-          <option key={ele} value={getter[ele]}>
-            {ele}
-          </option>
-        ))}
-      </select>
-
       {show.a && (
-        <Dokumentuppgifter
-          documentCallback={documentCallback}
-        ></Dokumentuppgifter>
+        <div>
+          <h2>1. Dokumentuppgifter</h2>
+          <label> Country</label>
+          <select
+            value={country}
+            onChange={(e) => setCountry(e.currentTarget.value)}
+          >
+            {getter.map((ele) => (
+              <option key={ele} value={getter[ele]}>
+                {ele}
+              </option>
+            ))}
+          </select>
+          <Dokumentuppgifter
+            documentCallback={documentCallback}
+          ></Dokumentuppgifter>
+        </div>
       )}
 
       {show.b && (
@@ -132,15 +136,7 @@ function App() {
       {show.c && (
         <Kontaktadress kontaktCallback={kontaktCallback}></Kontaktadress>
       )}
-      {show.d && (
-        <div>
-          <Ovrigt overigtCallback={overigtCallback}></Ovrigt>
-
-          <button type="submit" onClick={post}>
-            SUBMIT
-          </button>
-        </div>
-      )}
+      {show.d && <Ovrigt overigtCallback={overigtCallback}></Ovrigt>}
     </div>
   );
 }
