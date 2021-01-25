@@ -15,6 +15,7 @@ function App() {
   const [data, setData] = useState({ hits: [] });
 
   const [country, setCountry] = useState("Select");
+  const [show, setShow] = useState({ a: true, b: false, c: false, d: false });
 
   const getter = [
     "Sverige",
@@ -67,20 +68,35 @@ function App() {
   };
 
   const documentCallback = (values) => {
-    console.log("test");
     console.log(values);
+    show.a = false;
+    show.b = true;
+
+    setShow((prevState) => ({
+      ...prevState,
+    }));
   };
 
   const arendaCallback = (values) => {
-    console.log("test");
     console.log(values);
+    show.b = false;
+    show.c = true;
+    setShow((prevState) => ({
+      ...prevState,
+    }));
   };
-  const overigtCallback = (values) => {
-    console.log("test");
-    console.log(values);
-  };
+
   const kontaktCallback = (values) => {
-    console.log("test");
+    console.log(values);
+    show.c = false;
+    show.d = true;
+
+    setShow((prevState) => ({
+      ...prevState,
+    }));
+  };
+
+  const overigtCallback = (values) => {
     console.log(values);
   };
   return (
@@ -103,14 +119,28 @@ function App() {
           </option>
         ))}
       </select>
-      {/* <Dokumentuppgifter formCallback={documentCallback}></Dokumentuppgifter>
-      <Arendeuppgifter arendaCallback={arendaCallback}></Arendeuppgifter>
-      <Kontaktadress kontaktCallback={kontaktCallback}></Kontaktadress>
-      <Ovrigt overigtCallback={overigtCallback}></Ovrigt> */}
 
-      <button type="submit" onClick={post}>
-        SUBMIT
-      </button>
+      {show.a && (
+        <Dokumentuppgifter
+          documentCallback={documentCallback}
+        ></Dokumentuppgifter>
+      )}
+
+      {show.b && (
+        <Arendeuppgifter arendaCallback={arendaCallback}></Arendeuppgifter>
+      )}
+      {show.c && (
+        <Kontaktadress kontaktCallback={kontaktCallback}></Kontaktadress>
+      )}
+      {show.d && (
+        <div>
+          <Ovrigt overigtCallback={overigtCallback}></Ovrigt>
+
+          <button type="submit" onClick={post}>
+            SUBMIT
+          </button>
+        </div>
+      )}
     </div>
   );
 }
