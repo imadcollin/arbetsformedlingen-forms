@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Radio, TextareaAutosize } from "@material-ui/core";
 import "./Arenda.css";
+import "./shared.css"
 import { CountryDropdown } from "react-country-region-selector";
 
 export const Arendeuppgifter = ({ arendaCallback }) => {
@@ -105,7 +106,7 @@ export const Arendeuppgifter = ({ arendaCallback }) => {
             {...formik.getFieldProps("yearOfBirth")}
           />
           {formik.touched.yearOfBirth && formik.errors.yearOfBirth ? (
-            <div>{formik.errors.yearOfBirth}</div>
+            <div className="error">{formik.errors.yearOfBirth}</div>
           ) : null}
 
           <label htmlFor="monthOfBirth">Month</label>
@@ -115,7 +116,7 @@ export const Arendeuppgifter = ({ arendaCallback }) => {
             {...formik.getFieldProps("monthOfBirth")}
           />
           {formik.touched.monthOfBirth && formik.errors.monthOfBirth ? (
-            <div>{formik.errors.monthOfBirth}</div>
+            <div className="error">{formik.errors.monthOfBirth}</div>
           ) : null}
 
           <label htmlFor="dayOfBirth">Day</label>
@@ -125,7 +126,7 @@ export const Arendeuppgifter = ({ arendaCallback }) => {
             {...formik.getFieldProps("dayOfBirth")}
           />
           {formik.touched.dayOfBirth && formik.errors.dayOfBirth ? (
-            <div>{formik.errors.dayOfBirth}</div>
+            <div className="error">{formik.errors.dayOfBirth}</div>
           ) : null}
           <label htmlFor="radio"> Gender </label>
           <div role="group">
@@ -137,14 +138,14 @@ export const Arendeuppgifter = ({ arendaCallback }) => {
             </div>
           </div>
 
-          <label htmlFor="Name"> Sure name </label>
+          <label htmlFor="Name"> Surname </label>
           <Field
             id="surname"
             type="text"
             {...formik.getFieldProps("surname")}
           />
           {formik.touched.surname && formik.errors.surname ? (
-            <div>{formik.errors.surname}</div>
+            <div className="error">{formik.errors.surname}</div>
           ) : null}
 
           <label htmlFor="firstname"> First name (Optional)</label>
@@ -154,7 +155,7 @@ export const Arendeuppgifter = ({ arendaCallback }) => {
             {...formik.getFieldProps("firstname")}
           />
           {formik.touched.firstname && formik.errors.firstname ? (
-            <div>{formik.errors.firstname}</div>
+            <div className="error">{formik.errors.firstname}</div>
           ) : null}
 
           <label htmlFor="additionalName">
@@ -167,7 +168,7 @@ export const Arendeuppgifter = ({ arendaCallback }) => {
             {...formik.getFieldProps("additionalName")}
           />
           {formik.touched.additionalName && formik.errors.additionalName ? (
-            <div>{formik.errors.additionalName}</div>
+            <div className="error">{formik.errors.additionalName}</div>
           ) : null}
 
           <label htmlFor="placeOfBirth">Place Of Birth</label>
