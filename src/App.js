@@ -1,13 +1,14 @@
 import "./App.css";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import logo from "./images/2.jpg";
 import Dokumentuppgifter from "./componants/Document-uppdifter";
 import Arendeuppgifter from "./componants/Arende-uppgifter";
 import Kontaktadress from "./componants/Kontakt-adress";
 import Ovrigt from "./componants/Ovrigt";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
+
 function App() {
   /****************************************
    *  STATES
@@ -23,16 +24,7 @@ function App() {
     ovrigt: {},
   });
   const [steps, setSteps] = useState(1);
-
-  const getter = [
-    "Sverige",
-    "Tyskland",
-    "Danmark",
-    "Polen",
-    "Frankrike",
-    "Norge",
-    "Italien",
-  ];
+  const [isLoading, setLoading] = useState(true);
 
   const config = {
     headers: { "Access-Control-Allow-Origin": "*" },
@@ -49,11 +41,22 @@ function App() {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
+      }).catch((err) => {
+        console.log(err);
       });
       setData(result.data);
+      setLoading(false);
     };
     fetchData();
   }, []);
+
+  if (isLoading) {
+    return (
+      <div style={{ margin: "auto", marginTop: "25%", marginLeft: "40%" }}>
+        <Loader type="ThreeDots" color="#00BFFF" />
+      </div>
+    );
+  }
   /****************************************
    *  POST
    ****************************************/
@@ -128,11 +131,11 @@ function App() {
           <h2>1. Dokumentuppgifter</h2>
           <label> Country</label>
           <select
-            value={country}
+            value="test"
             onChange={(e) => setCountry(e.currentTarget.value)}
           >
-            {getter.map((ele) => (
-              <option key={ele} value={getter[ele]}>
+            {data.map((ele) => (
+              <option key={ele} value={data[ele]}>
                 {ele}
               </option>
             ))}
