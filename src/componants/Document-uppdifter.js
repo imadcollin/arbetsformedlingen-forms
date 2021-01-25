@@ -7,13 +7,10 @@ const Dokumentuppgifter = ({ documentCallback }) => {
   const [base64, setBase64] = React.useState("");
 
   function handleUpload(event) {
-    console.log("working");
     setFile(event.target.files[0]);
     const selectedFile = event.target.files;
 
     if (selectedFile.length > 0) {
-      console.log(">0");
-
       var fileToLoad = selectedFile[0];
       var fileReader = new FileReader();
 
@@ -24,6 +21,7 @@ const Dokumentuppgifter = ({ documentCallback }) => {
       fileReader.readAsDataURL(fileToLoad);
     }
   }
+
   return (
     <Formik
       initialValues={{ namn: "", telefon: "", email: "", handling: "" }}
@@ -66,17 +64,15 @@ const Dokumentuppgifter = ({ documentCallback }) => {
 
           <label htmlFor="handling">Handling</label>
           <div id="upload-box">
-            <input type="file" onChange={handleUpload} />
+            <input
+              type="file"
+              onChange={handleUpload}
+              accept="application/pdf"
+            />
+
             <p>{file.name}</p>
           </div>
 
-          {/* <Field
-            id="handling"
-            type="file"
-            onChange={formik.handleUpload}
-            onChange={handleUpload} 
-            {...formik.getFieldProps("handling")}
-          /> */}
           {formik.touched.handling && formik.errors.handling ? (
             <div className="error">{formik.errors.handling}</div>
           ) : null}
