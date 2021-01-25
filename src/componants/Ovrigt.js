@@ -1,8 +1,8 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-
-export const Ovrigt = ({overigtCallback}) => {
+import "./shared.css";
+export const Ovrigt = ({ overigtCallback }) => {
   return (
     <Formik
       initialValues={{
@@ -20,8 +20,8 @@ export const Ovrigt = ({overigtCallback}) => {
           }),
         upplysning: Yup.string().max(200, "Maximum 200 characters").optional(),
       })}
-      onSubmit={(values, { setSubmitting }) => {
-        overigtCallback(values)
+      onSubmit={(values) => {
+        overigtCallback(values);
       }}
     >
       {(formik) => (
@@ -42,7 +42,7 @@ export const Ovrigt = ({overigtCallback}) => {
             <option value="NEJ" label="NEJ" />
           </select>
           {formik.touched.id && formik.errors.id ? (
-            <div>{formik.errors.id}</div>
+            <div className="error">{formik.errors.id}</div>
           ) : null}
 
           {formik.values.id === "NEJ" || formik.values.id === "PASS" ? (
@@ -56,7 +56,7 @@ export const Ovrigt = ({overigtCallback}) => {
             </div>
           ) : null}
           {formik.touched.underlagId && formik.errors.underlagId ? (
-            <div>{formik.errors.underlagId}</div>
+            <div className="error">{formik.errors.underlagId}</div>
           ) : null}
 
           <label htmlFor="upplysning">Additional Information (Optional)</label>
@@ -66,7 +66,7 @@ export const Ovrigt = ({overigtCallback}) => {
             {...formik.getFieldProps("upplysning")}
           />
           {formik.touched.upplysning && formik.errors.upplysning ? (
-            <div>{formik.errors.upplysning}</div>
+            <div className="error">{formik.errors.upplysning}</div>
           ) : null}
           <button type="submit">SUBMIT</button>
         </Form>

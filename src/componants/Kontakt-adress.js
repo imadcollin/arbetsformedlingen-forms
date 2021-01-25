@@ -2,8 +2,8 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
-
-export const Kontaktadress = ({kontaktCallback}) => {
+import "./shared.css";
+export const Kontaktadress = ({ kontaktCallback }) => {
   return (
     <Formik
       initialValues={{
@@ -40,8 +40,8 @@ export const Kontaktadress = ({kontaktCallback}) => {
           .max(27, "Must not exceed 27 characters")
           .required("Required"),
       })}
-      onSubmit={(values, { setSubmitting }) => {
-        kontaktCallback(values)
+      onSubmit={(values) => {
+        kontaktCallback(values);
       }}
     >
       {(formik) => (
@@ -55,13 +55,13 @@ export const Kontaktadress = ({kontaktCallback}) => {
             {...formik.getFieldProps("c_o_address")}
           />
           {formik.touched.c_o_address && formik.errors.c_o_address ? (
-            <div>{formik.errors.c_o_address}</div>
+            <div className="error">{formik.errors.c_o_address}</div>
           ) : null}
 
           <label htmlFor="ort"> Ort</label>
           <Field id="ort" type="text" {...formik.getFieldProps("ort")} />
           {formik.touched.ort && formik.errors.ort ? (
-            <div>{formik.errors.ort}</div>
+            <div className="error">{formik.errors.ort}</div>
           ) : null}
           <label htmlFor="ort"> Country and Region</label>
 
@@ -84,7 +84,7 @@ export const Kontaktadress = ({kontaktCallback}) => {
           <label htmlFor="street"> Street </label>
           <Field id="street" type="text" {...formik.getFieldProps("street")} />
           {formik.touched.street && formik.errors.street ? (
-            <div>{formik.errors.street}</div>
+            <div className="error">{formik.errors.street}</div>
           ) : null}
 
           <label htmlFor="apartment_no"> Apartment Number </label>
@@ -94,7 +94,7 @@ export const Kontaktadress = ({kontaktCallback}) => {
             {...formik.getFieldProps("apartment_no")}
           />
           {formik.touched.apartment_no && formik.errors.apartment_no ? (
-            <div>{formik.errors.apartment_no}</div>
+            <div className="error">{formik.errors.apartment_no}</div>
           ) : null}
 
           <label htmlFor="post_no"> Post Number </label>
@@ -104,7 +104,7 @@ export const Kontaktadress = ({kontaktCallback}) => {
             {...formik.getFieldProps("post_no")}
           />
           {formik.touched.post_no && formik.errors.post_no ? (
-            <div>{formik.errors.post_no}</div>
+            <div className="error">{formik.errors.post_no}</div>
           ) : null}
 
           <label htmlFor="post_ort"> Post Ort </label>
@@ -114,7 +114,7 @@ export const Kontaktadress = ({kontaktCallback}) => {
             {...formik.getFieldProps("post_ort")}
           />
           {formik.touched.post_ort && formik.errors.post_ort ? (
-            <div>{formik.errors.post_ort}</div>
+            <div className="error">{formik.errors.post_ort}</div>
           ) : null}
 
           <button type="submit">NEXT</button>

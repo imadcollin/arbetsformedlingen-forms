@@ -161,6 +161,7 @@ p {
   width: 100px;
   height: 100px;
   background: #555;
+  margin-top: 2%;
 }
 
 .header {
@@ -185,4 +186,5 @@ p {
   h2 {
     font-size: large;
   }
+
 }
