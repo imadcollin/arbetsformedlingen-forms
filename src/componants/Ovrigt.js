@@ -20,7 +20,7 @@ export const Ovrigt = ({ overigtCallback }) => {
           }),
         upplysning: Yup.string().max(200, "Maximum 200 characters").optional(),
       })}
-      onSubmit={(values, { setSubmitting }) => {
+      onSubmit={(values) => {
         overigtCallback(values);
       }}
     >
