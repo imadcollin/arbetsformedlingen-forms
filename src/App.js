@@ -22,6 +22,8 @@ function App() {
     kontaktadress: {},
     ovrigt: {},
   });
+  const [steps, setSteps] = useState(1);
+
   const getter = [
     "Sverige",
     "Tyskland",
@@ -78,6 +80,7 @@ function App() {
     setShow((prevState) => ({
       ...prevState,
     }));
+    setSteps(steps + 1);
   };
 
   const arendaCallback = (values) => {
@@ -88,6 +91,7 @@ function App() {
     setShow((prevState) => ({
       ...prevState,
     }));
+    setSteps(steps + 1);
   };
 
   const kontaktCallback = (values) => {
@@ -112,7 +116,12 @@ function App() {
         <img src={logo} alt="Logo" />
         <span className="title">Arbetsformedlingen Forms</span>
       </div>
-      <h1>App</h1>
+      <div>
+        <h1>App</h1>
+        <span style={{ float: "right", fontSize: "20px" }}>
+          ({steps} of 3 steps){" "}
+        </span>
+      </div>
 
       {show.a && (
         <div>
