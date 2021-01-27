@@ -8,7 +8,7 @@ import Kontaktadress from "./componants/Kontakt-adress";
 import Ovrigt from "./componants/Ovrigt";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
-
+import Alert from "./elements/Popup";
 function App() {
   /****************************************
    *  STATES
@@ -16,7 +16,13 @@ function App() {
   const [data, setData] = useState({ hits: [] });
 
   const [country, setCountry] = useState("Select");
-  const [show, setShow] = useState({ a: true, b: false, c: false, d: false });
+  const [show, setShow] = useState({
+    a: true,
+    b: false,
+    c: false,
+    d: false,
+    finish: false,
+  });
   const [fieldsCollector, setFieldsCollector] = useState({
     dokumentuppgifter: {},
     arendeuppgifter: {},
@@ -105,6 +111,7 @@ function App() {
     setShow((prevState) => ({
       ...prevState,
     }));
+    setSteps(steps + 1);
   };
 
   const overigtCallback = (values) => {
@@ -112,6 +119,12 @@ function App() {
 
     /*........SUBMIT........*/
     post(fieldsCollector);
+
+    show.d = false;
+    show.finish = true;
+    setShow((prevState) => ({
+      ...prevState,
+    }));
   };
   return (
     <div className="App">
@@ -122,7 +135,7 @@ function App() {
       <div>
         <h1>App</h1>
         <span style={{ float: "right", fontSize: "20px" }}>
-          ({steps} of 3 steps){" "}
+          {!show.finish ? steps + "of 4 steps" : ""}
         </span>
       </div>
 
@@ -153,6 +166,12 @@ function App() {
         <Kontaktadress kontaktCallback={kontaktCallback}></Kontaktadress>
       )}
       {show.d && <Ovrigt overigtCallback={overigtCallback}></Ovrigt>}
+      {show.finish && (
+        <Alert type="success" title="Thank you!" id="001">
+          We have received your application. We will get back to you ASAP.
+          Thanks for your time.
+        </Alert>
+      )}
     </div>
   );
 }
