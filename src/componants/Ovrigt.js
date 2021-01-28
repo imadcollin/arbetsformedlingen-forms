@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import "./shared.css";
+import strings from "./lang";
 export const Ovrigt = ({ overigtCallback }) => {
   return (
     <Formik
@@ -26,7 +27,7 @@ export const Ovrigt = ({ overigtCallback }) => {
     >
       {(formik) => (
         <Form onSubmit={formik.handleSubmit}>
-          <h2>4. Ovrigt</h2>
+          <h2>4. {strings.other}</h2>
 
           <select
             name="id"
@@ -47,7 +48,7 @@ export const Ovrigt = ({ overigtCallback }) => {
 
           {formik.values.id === "NEJ" || formik.values.id === "PASS" ? (
             <div>
-              <label htmlFor="underlagId"> Underlag ID </label>
+              <label htmlFor="underlagId"> {strings.id} </label>
               <Field
                 id="underlagId"
                 type="text"
@@ -59,7 +60,7 @@ export const Ovrigt = ({ overigtCallback }) => {
             <div className="error">{formik.errors.underlagId}</div>
           ) : null}
 
-          <label htmlFor="upplysning">Additional Information (Optional)</label>
+          <label htmlFor="upplysning">{strings.moreInfo}</label>
           <textarea
             id="upplysning"
             type="text"
@@ -68,7 +69,7 @@ export const Ovrigt = ({ overigtCallback }) => {
           {formik.touched.upplysning && formik.errors.upplysning ? (
             <div className="error">{formik.errors.upplysning}</div>
           ) : null}
-          <button type="submit">SUBMIT</button>
+          <button type="submit">{strings.submit}</button>
         </Form>
       )}
     </Formik>
