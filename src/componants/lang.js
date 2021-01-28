@@ -10,6 +10,11 @@ const strings = new LocalizedStrings({
 
     steps: " of 4 steps",
     country: "Country",
+    name: "Name",
+    tel: "Telephone",
+    email: "Email Address",
+    handling: "Handling",
+    next: "Next",
   },
   SE: {
     Language: "Språk",
@@ -20,6 +25,11 @@ const strings = new LocalizedStrings({
 
     steps: " av 4 steg",
     country: "Land",
+    name: "Namn",
+    tel: "Telefon",
+    email: "E-postadress",
+    handling: "Hantering",
+    next: "Nästa",
   },
 });
 
