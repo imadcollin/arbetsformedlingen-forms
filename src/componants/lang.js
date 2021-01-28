@@ -7,7 +7,6 @@ const strings = new LocalizedStrings({
     section1: "Document Properties",
     finished:
       " We have received your application. We will get back to you ASAP. Thanks for your time.",
-
     steps: " of 4 steps",
     country: "Country",
     name: "Name",
@@ -23,6 +22,17 @@ const strings = new LocalizedStrings({
     apartment_no: "Apartment Number",
     post_no: "Post Number ",
     post_ort: "Post City ",
+    application: "Application",
+    yearOfBirth: "Year Of Birth",
+    monthOfBirth: "Month",
+    dayOfBirth: "Day",
+    gender: "Gender",
+    surname: "Surname",
+    firstname: "First name (Optional)",
+    info: "Additional Information (Optional)",
+    place: "Place Of Birth",
+    male: "Male",
+    female: "Female",
   },
   SE: {
     Language: "Språk",
@@ -30,7 +40,6 @@ const strings = new LocalizedStrings({
     section1: "Dokumentuppgifter",
     finished:
       "Vi har fått din ansökan. Vi återkommer till dig ASAP. Tack för din tid.",
-
     steps: " av 4 steg",
     country: "Land",
     name: "Namn",
@@ -38,6 +47,7 @@ const strings = new LocalizedStrings({
     email: "E-postadress",
     handling: "Hantering",
     next: "Nästa",
+    /* 1*/
     contact: "Kontaktadress",
     c_o: "C/O (valfritt)",
     city: "Ort",
@@ -46,6 +56,18 @@ const strings = new LocalizedStrings({
     apartment_no: "Lägenhetsnummer",
     post_no: "Postnummer",
     post_ort: "Post Ort",
+    /* 2 */
+    application: "Ärendeuppgifter",
+    yearOfBirth: "Födelseår",
+    monthOfBirth: "Månad",
+    dayOfBirth: "Dag",
+    gender: "Kön",
+    surname: "Efternamn",
+    firstname: "Förnamn (valfritt)",
+    info: "Ytterligare information (valfritt)",
+    place: "Födelseort",
+    male: "Mann",
+    female: "Kvinna",
   },
 });
 
