@@ -9,6 +9,7 @@ import Ovrigt from "./componants/Ovrigt";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 import Alert from "./elements/Popup";
+import strings from "./componants/lang";
 function App() {
   /****************************************
    *  STATES
@@ -16,6 +17,7 @@ function App() {
   const [data, setData] = useState({ hits: [] });
 
   const [country, setCountry] = useState("Select");
+  const [lang, setLang] = useState("en");
   const [show, setShow] = useState({
     a: true,
     b: false,
@@ -126,25 +128,42 @@ function App() {
       ...prevState,
     }));
   };
+
+  const switcher = (value) => {
+    setLang(value);
+    strings.setLanguage(`${value}`);
+  };
   return (
     <div className="App">
       <div className="header">
         <img src={logo} alt="Logo" />
-        <span className="title">Arbetsformedlingen Forms</span>
+        <span className="title">{strings.head}</span>
       </div>
-      <div>
-        <h1>App</h1>
+      <div className="parent">
+        <div className="apptest">
+          <h1>App </h1>
+          <div className="lang">
+            <select
+              className="lang-select"
+              value={lang}
+              onChange={(e) => switcher(e.currentTarget.value)}
+            >
+              <option> EN</option>
+              <option> SE</option>
+            </select>
+          </div>
+        </div>
+
         <span style={{ float: "right", fontSize: "20px" }}>
-          {!show.finish ? steps + "of 4 steps" : ""}
+          {!show.finish ? steps + strings.steps : ""}
         </span>
       </div>
-
       {show.a && (
         <div>
-          <h2>1. Dokumentuppgifter</h2>
-          <label> Country</label>
+          <h2>1. {strings.section1}</h2>
+          <label> {strings.country}</label>
           <select
-            value="test"
+            value={country}
             onChange={(e) => setCountry(e.currentTarget.value)}
           >
             {data.map((ele) => (
@@ -168,8 +187,7 @@ function App() {
       {show.d && <Ovrigt overigtCallback={overigtCallback}></Ovrigt>}
       {show.finish && (
         <Alert type="success" title="Thank you!" id="001">
-          We have received your application. We will get back to you ASAP.
-          Thanks for your time.
+          {strings.finished}
         </Alert>
       )}
     </div>
