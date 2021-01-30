@@ -39,7 +39,7 @@ export const Arendeuppgifter = ({ arendaCallback }) => {
 
         monthOfBirth: Yup.string()
           .matches(/^(0[1-9]|1[012])$/, "Invalid Month")
-          .required("Required"),
+          .required("Month is Required, example: 03"),
 
         dayOfBirth: Yup.string()
           .test("dobD", "Invalid Day", (value) => {
@@ -71,10 +71,10 @@ export const Arendeuppgifter = ({ arendaCallback }) => {
           })
           .min(2, "Invalid")
           .max(2, "Invalid")
-          .required("Required"),
+          .required("Day is Required, example:15"),
         surname: Yup.string()
           .max(60, "Must not exceed 60 characters")
-          .required("Required"),
+          .required("Surname is Required"),
 
         firstname: Yup.string().optional(),
         additionalName: Yup.string()
@@ -122,9 +122,13 @@ export const Arendeuppgifter = ({ arendaCallback }) => {
           <label htmlFor="radio"> {strings.gender} </label>
           <div role="group">
             <div>
-              {strings.male}
+             <span style={{fontSize:"14px"}}>
+               {strings.male}
+               </span> 
               <Field type="radio" className="radio" name="picked" value="One" />
+             <span style={{fontSize:"14px"}}>
               {strings.female}
+               </span> 
               <Field type="radio" className="radio" name="picked" value="Two" />
             </div>
           </div>

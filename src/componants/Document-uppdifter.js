@@ -29,11 +29,11 @@ const Dokumentuppgifter = ({ documentCallback }) => {
       validationSchema={Yup.object({
         namn: Yup.string()
           .max(60, "Must not exceed 60 characters")
-          .required("Required"),
+          .required("Name is Required"),
         telefon: Yup.string()
           .max(15, "Must be 15 characters or less")
-          .required("Required"),
-        email: Yup.string().email("Invalid email address").required("Required"),
+          .required("Mobile is Required"),
+        email: Yup.string().email("Invalid email address").required("Email is Required"),
         handling: Yup.boolean().optional(),
       })}
       onSubmit={(values) => {
@@ -71,7 +71,7 @@ const Dokumentuppgifter = ({ documentCallback }) => {
               accept="application/pdf"
             />
 
-            <p>{file.name}</p>
+            {/* <p>{file.name}</p> */}
           </div>
 
           {formik.touched.handling && formik.errors.handling ? (

@@ -12,12 +12,12 @@ export const Ovrigt = ({ overigtCallback }) => {
         upplysning: "",
       }}
       validationSchema={Yup.object({
-        id: Yup.string().required("Required, select and ID"),
+        id: Yup.string().required("Required, select an ID"),
         underlagId: Yup.string()
           .max(80, "Maximum 80 characters")
           .when("id", {
             is: (value) => value === "NEJ" || value === "PASS",
-            then: Yup.string().required("Required..."),
+            then: Yup.string().required("ID is Required!"),
           }),
         upplysning: Yup.string().max(200, "Maximum 200 characters").optional(),
       })}

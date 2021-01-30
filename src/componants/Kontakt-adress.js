@@ -23,25 +23,27 @@ export const Kontaktadress = ({ kontaktCallback }) => {
           .optional(),
         ort: Yup.string()
           .max(35, "Must not exceed 35 characters")
-          .required("Required"),
+          .required("City is Required"),
         street: Yup.string()
           .max(35, "Must not exceed 35 characters")
-          .required("Required."),
+          .required("Street is Required."),
         apartment_no: Yup.string()
           .matches(/^[0-9]+$/, "Must be only digits")
           .min(4, "Must be 4 digits")
           .max(4, "Must be 4 digits")
           .required("Apartment number is required"),
-        post_no: Yup.string()
-          .matches(/^[0-9]+$/, "Must be only digits")
+        post_no: 
+        Yup.string() // bug: trim for removing whitespace did not work (line 46)! 
+          // .matches(/^[0-9]+$/, "Must be only digits")
           .min(5, "Must be 5 digits")
-          .max(5, "Must be 5 digits")
+          .max(6, "Must be 5 digits")
           .required("Post number is required"),
         post_ort: Yup.string()
           .max(27, "Must not exceed 27 characters")
-          .required("Required"),
+          .required("City is Required"),
       })}
       onSubmit={(values) => {
+        values.post_no=values.post_no.replace(/\s/g, ""); 
         kontaktCallback(values);
       }}
     >

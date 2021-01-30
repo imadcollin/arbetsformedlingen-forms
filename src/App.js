@@ -186,7 +186,7 @@ function App() {
       )}
       {show.d && <Ovrigt overigtCallback={overigtCallback}></Ovrigt>}
       {show.finish && (
-        <Alert type="success" title="Thank you!" id="001">
+        <Alert type="success" title={strings.thanks} id="001">
           {strings.finished}
         </Alert>
       )}

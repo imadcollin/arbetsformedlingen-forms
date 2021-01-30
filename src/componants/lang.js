@@ -33,11 +33,11 @@ const strings = new LocalizedStrings({
     place: "Place Of Birth",
     male: "Male",
     female: "Female",
-
     other: "Other",
     id: "ID",
     moreInfo: "Additional Information (Optional)",
     submit: "SUBMIT",
+    thanks:"Thank You"
   },
   SE: {
     Language: "Språk",
@@ -78,6 +78,7 @@ const strings = new LocalizedStrings({
     id: "Underlag ID",
     moreInfo: "Ytterligare information (valfritt)",
     submit: "SKICKA",
+    thanks:"Tack Så Mycket"
   },
 });
 

@@ -92,6 +92,7 @@ input[type="submit"] {
   font-size: 16px;
   font-weight: 100;
   letter-spacing: 10px;
+  font-weight: bolder;
 }
 
 button {
@@ -194,11 +195,12 @@ p {
 }
 .lang-select {
   padding: 10px 10px;
+  background-color: #fff;
 }
 
 @media only screen and (max-device-width: 480px) {
   .title {
-    font-size: large;
+    font-size: x-large;
     color: yellow;
   }
   h2 {
@@ -212,6 +214,6 @@ p {
   }
   .lang-select {
     padding: 1px 1px;
+    background-color: #fff;
   }
 }
-
