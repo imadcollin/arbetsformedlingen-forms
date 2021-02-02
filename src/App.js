@@ -231,7 +231,6 @@ function App() {
         <button
           type="button"
           className="outline"
-          style={{ backgroundColor: "#08c", width: "25%" }}
           onClick={goBack}
         >
           {" "}
