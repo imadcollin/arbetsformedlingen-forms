@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 import "./shared.css";
 import strings from "./lang"
-export const Kontaktadress = ({ kontaktCallback }) => {
+export const Kontaktadress = ({ kontaktCallback,status }) => {
   return (
     <Formik
       initialValues={{
@@ -48,6 +48,7 @@ export const Kontaktadress = ({ kontaktCallback }) => {
       }}
     >
       {(formik) => (
+        status &&
         <Form onSubmit={formik.handleSubmit}>
           <h2>3. {strings.contact}</h2>
 
