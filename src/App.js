@@ -170,7 +170,7 @@ function App() {
       </div>
       <div className="parent">
         <div className="apptest">
-          <h1>App </h1>
+          <h1>RSNR </h1>
           <div className="lang">
             <select
               className="lang-select"
