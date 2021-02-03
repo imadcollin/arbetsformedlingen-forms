@@ -87,7 +87,6 @@ function App() {
 
     show.a = false;
     show.b = true;
-
     setShow((prevState) => ({
       ...prevState,
     }));
@@ -133,6 +132,36 @@ function App() {
     setLang(value);
     strings.setLanguage(`${value}`);
   };
+  const goBack = () => {
+    switch (steps) {
+      case 2:
+        show.a = true;
+        show.b = false;
+        setShow((prevState) => ({
+          ...prevState,
+        }));
+        setSteps(steps - 1);
+        break;
+      case 3:
+        show.b = true;
+        show.c = false;
+        setShow((prevState) => ({
+          ...prevState,
+        }));
+        setSteps(steps - 1);
+        break;
+      case 4:
+        show.c = true;
+        show.d = false;
+        setShow((prevState) => ({
+          ...prevState,
+        }));
+        setSteps(steps - 1);
+        break;
+      default:
+        break;
+    }
+  };
   return (
     <div className="App">
       <div className="header">
@@ -141,7 +170,7 @@ function App() {
       </div>
       <div className="parent">
         <div className="apptest">
-          <h1>App </h1>
+          <h1>RSNR </h1>
           <div className="lang">
             <select
               className="lang-select"
@@ -158,37 +187,55 @@ function App() {
           {!show.finish ? steps + strings.steps : ""}
         </span>
       </div>
-      {show.a && (
-        <div>
-          <h2>1. {strings.section1}</h2>
-          <label> {strings.country}</label>
-          <select
-            value={country}
-            onChange={(e) => setCountry(e.currentTarget.value)}
-          >
-            {data.map((ele) => (
-              <option key={ele} value={data[ele]}>
-                {ele}
-              </option>
-            ))}
-          </select>
-          <Dokumentuppgifter
-            documentCallback={documentCallback}
-          ></Dokumentuppgifter>
-        </div>
-      )}
 
-      {show.b && (
-        <Arendeuppgifter arendaCallback={arendaCallback}></Arendeuppgifter>
-      )}
-      {show.c && (
-        <Kontaktadress kontaktCallback={kontaktCallback}></Kontaktadress>
-      )}
-      {show.d && <Ovrigt overigtCallback={overigtCallback}></Ovrigt>}
+      <div>
+        {show.a && (
+          <div>
+            <h2>1. {strings.section1}</h2>
+            <label> {strings.country}</label>
+            <select
+              value={country}
+              onChange={(e) => setCountry(e.currentTarget.value)}
+            >
+              {data.map((ele) => (
+                <option key={ele} value={data[ele]}>
+                  {ele}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+        <Dokumentuppgifter
+          status={show.a}
+          documentCallback={documentCallback}
+        ></Dokumentuppgifter>
+      </div>
+
+      <Arendeuppgifter
+        arendaCallback={arendaCallback}
+        status={show.b}
+      ></Arendeuppgifter>
+
+      <Kontaktadress
+        kontaktCallback={kontaktCallback}
+        status={show.c}
+      ></Kontaktadress>
+
+      <Ovrigt overigtCallback={overigtCallback} status={show.d}></Ovrigt>
       {show.finish && (
         <Alert type="success" title={strings.thanks} id="001">
           {strings.finished}
         </Alert>
+      )}
+      {!show.finish && (
+        <button
+          type="button"
+          className="outline"
+          onClick={goBack}
+        >
+          {" "}
+          Back{" "}
+        </button>
       )}
     </div>
   );

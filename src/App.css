@@ -21,7 +21,7 @@ h1 {
 }
 
 .form {
-  background: #0e101c;
+  /* background: #0e101c; */
   max-width: 400px;
   margin: 0 auto;
 }
@@ -105,7 +105,12 @@ button {
 input[type="submit"]:hover {
   background: #bf1650;
 }
-
+button[type="button"] {
+  background-color: #00005a;
+}
+button[type="button"]:hover {
+  background: #168fbf;
+}
 button[type="submit"]:hover {
   background: #bf1650;
 }

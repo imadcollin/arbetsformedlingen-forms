@@ -5,7 +5,7 @@ import "./Arenda.css";
 import "./shared.css";
 import { CountryDropdown } from "react-country-region-selector";
 import strings from "./lang";
-export const Arendeuppgifter = ({ arendaCallback }) => {
+export const Arendeuppgifter = ({ arendaCallback, status }) => {
   return (
     <Formik
       initialValues={{
@@ -87,6 +87,7 @@ export const Arendeuppgifter = ({ arendaCallback }) => {
       }}
     >
       {(formik) => (
+        status &&
         <Form onSubmit={formik.handleSubmit}>
           <h2>2. {strings.application}</h2>
 

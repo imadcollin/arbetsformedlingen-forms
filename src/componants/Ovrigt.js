@@ -3,7 +3,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import "./shared.css";
 import strings from "./lang";
-export const Ovrigt = ({ overigtCallback }) => {
+export const Ovrigt = ({ overigtCallback,status }) => {
   return (
     <Formik
       initialValues={{
@@ -26,6 +26,7 @@ export const Ovrigt = ({ overigtCallback }) => {
       }}
     >
       {(formik) => (
+        status &&
         <Form onSubmit={formik.handleSubmit}>
           <h2>4. {strings.other}</h2>
 

@@ -3,7 +3,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import "./shared.css";
 import strings from "./lang";
-const Dokumentuppgifter = ({ documentCallback }) => {
+const Dokumentuppgifter = ({ documentCallback,status }) => {
   const [file, setFile] = React.useState("");
   const [base64, setBase64] = React.useState("");
 
@@ -42,7 +42,7 @@ const Dokumentuppgifter = ({ documentCallback }) => {
       }}
     >
       {(formik) => (
-        <Form onSubmit={formik.handleSubmit}>
+        status &&       <Form onSubmit={formik.handleSubmit}>
           <label htmlFor="Name"> {strings.name}</label>
           <Field id="namn" type="text" {...formik.getFieldProps("namn")} />
           {formik.touched.namn && formik.errors.namn ? (
