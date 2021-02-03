@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import "./Arenda.css";
 import "./shared.css";
 import { CountryDropdown } from "react-country-region-selector";
-
+import strings from "./lang";
 export const Arendeuppgifter = ({ arendaCallback }) => {
   return (
     <Formik
@@ -39,7 +39,7 @@ export const Arendeuppgifter = ({ arendaCallback }) => {
 
         monthOfBirth: Yup.string()
           .matches(/^(0[1-9]|1[012])$/, "Invalid Month")
-          .required("Required"),
+          .required("Month is Required, example: 03"),
 
         dayOfBirth: Yup.string()
           .test("dobD", "Invalid Day", (value) => {
@@ -71,10 +71,10 @@ export const Arendeuppgifter = ({ arendaCallback }) => {
           })
           .min(2, "Invalid")
           .max(2, "Invalid")
-          .required("Required"),
+          .required("Day is Required, example:15"),
         surname: Yup.string()
           .max(60, "Must not exceed 60 characters")
-          .required("Required"),
+          .required("Surname is Required"),
 
         firstname: Yup.string().optional(),
         additionalName: Yup.string()
@@ -88,9 +88,9 @@ export const Arendeuppgifter = ({ arendaCallback }) => {
     >
       {(formik) => (
         <Form onSubmit={formik.handleSubmit}>
-          <h2>2. Arendeuppgifter</h2>
+          <h2>2. {strings.application}</h2>
 
-          <label htmlFor="yearOfBirth">Year Of Birth</label>
+          <label htmlFor="yearOfBirth">{strings.yearOfBirth} </label>
           <Field
             id="yearOfBirth"
             type="text"
@@ -100,7 +100,7 @@ export const Arendeuppgifter = ({ arendaCallback }) => {
             <div className="error">{formik.errors.yearOfBirth}</div>
           ) : null}
 
-          <label htmlFor="monthOfBirth">Month</label>
+          <label htmlFor="monthOfBirth">{strings.monthOfBirth}</label>
           <Field
             id="monthOfBirth"
             type="text"
@@ -110,7 +110,7 @@ export const Arendeuppgifter = ({ arendaCallback }) => {
             <div className="error">{formik.errors.monthOfBirth}</div>
           ) : null}
 
-          <label htmlFor="dayOfBirth">Day</label>
+          <label htmlFor="dayOfBirth">{strings.dayOfBirth}</label>
           <Field
             id="dayOfBirth"
             type="text"
@@ -119,17 +119,21 @@ export const Arendeuppgifter = ({ arendaCallback }) => {
           {formik.touched.dayOfBirth && formik.errors.dayOfBirth ? (
             <div className="error">{formik.errors.dayOfBirth}</div>
           ) : null}
-          <label htmlFor="radio"> Gender </label>
+          <label htmlFor="radio"> {strings.gender} </label>
           <div role="group">
             <div>
-              Male
+             <span style={{fontSize:"14px"}}>
+               {strings.male}
+               </span> 
               <Field type="radio" className="radio" name="picked" value="One" />
-              Female
+             <span style={{fontSize:"14px"}}>
+              {strings.female}
+               </span> 
               <Field type="radio" className="radio" name="picked" value="Two" />
             </div>
           </div>
 
-          <label htmlFor="Name"> Surname </label>
+          <label htmlFor="Name"> {strings.surname} </label>
           <Field
             id="surname"
             type="text"
@@ -139,7 +143,7 @@ export const Arendeuppgifter = ({ arendaCallback }) => {
             <div className="error">{formik.errors.surname}</div>
           ) : null}
 
-          <label htmlFor="firstname"> First name (Optional)</label>
+          <label htmlFor="firstname"> {strings.firstname}</label>
           <Field
             id="firstname"
             type="text"
@@ -149,10 +153,7 @@ export const Arendeuppgifter = ({ arendaCallback }) => {
             <div className="error">{formik.errors.firstname}</div>
           ) : null}
 
-          <label htmlFor="additionalName">
-            {" "}
-            Additional Information (Optional)
-          </label>
+          <label htmlFor="additionalName"> {strings.info}</label>
           <textarea
             id="additionalName"
             type="text"
@@ -162,7 +163,7 @@ export const Arendeuppgifter = ({ arendaCallback }) => {
             <div className="error">{formik.errors.additionalName}</div>
           ) : null}
 
-          <label htmlFor="placeOfBirth">Place Of Birth</label>
+          <label htmlFor="placeOfBirth">{strings.place}</label>
           <CountryDropdown
             name="country"
             value={formik.values.country}
@@ -170,7 +171,7 @@ export const Arendeuppgifter = ({ arendaCallback }) => {
             onBlur={formik.handleBlur}
           />
 
-          <button type="submit">NEXT </button>
+          <button type="submit">{strings.next} </button>
         </Form>
       )}
     </Formik>

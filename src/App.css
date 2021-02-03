@@ -80,6 +80,7 @@ select {
   margin-bottom: 10px;
   font-size: 14px;
 }
+
 button,
 input[type="submit"] {
   background: #53d32c;
@@ -91,6 +92,7 @@ input[type="submit"] {
   font-size: 16px;
   font-weight: 100;
   letter-spacing: 10px;
+  font-weight: bolder;
 }
 
 button {
@@ -103,9 +105,11 @@ button {
 input[type="submit"]:hover {
   background: #bf1650;
 }
+
 button[type="submit"]:hover {
   background: #bf1650;
 }
+
 input[type="button"]:active,
 input[type="submit"]:active {
   transition: 0.3s all;
@@ -152,10 +156,12 @@ form {
   top: 20px;
   right: 20px;
 }
+
 p {
   color: #bf1650;
   font-size: larger;
 }
+
 .header img {
   /* float: left; */
   width: 100px;
@@ -170,6 +176,7 @@ p {
   height: 50px;
   margin-bottom: 75px;
 }
+
 .title {
   display: flex;
 
@@ -179,12 +186,34 @@ p {
   margin-bottom: 100px;
   margin-top: 35px;
 }
-@media (max-width: 400px) {
+
+.lang {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  float: right;
+}
+.lang-select {
+  padding: 10px 10px;
+  background-color: #fff;
+}
+
+@media only screen and (max-device-width: 480px) {
   .title {
-    font-size: 20px;
+    font-size: x-large;
+    color: yellow;
   }
   h2 {
-    font-size: large;
+    font-size: small;
   }
-
+  .lang {
+    position: absolute;
+    top: 1%;
+    right: 2%;
+    float: right;
+  }
+  .lang-select {
+    padding: 1px 1px;
+    background-color: #fff;
+  }
 }

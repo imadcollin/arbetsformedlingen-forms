@@ -3,6 +3,7 @@ textarea{
     height: 60px;
 }
 .radio{
-    width: 4%;
+    width: 2%;
     display: inline;
+    margin-right: 20px;;
 }

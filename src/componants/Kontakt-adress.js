@@ -3,6 +3,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 import "./shared.css";
+import strings from "./lang"
 export const Kontaktadress = ({ kontaktCallback }) => {
   return (
     <Formik
@@ -22,33 +23,35 @@ export const Kontaktadress = ({ kontaktCallback }) => {
           .optional(),
         ort: Yup.string()
           .max(35, "Must not exceed 35 characters")
-          .required("Required"),
+          .required("City is Required"),
         street: Yup.string()
           .max(35, "Must not exceed 35 characters")
-          .required("Required."),
+          .required("Street is Required."),
         apartment_no: Yup.string()
           .matches(/^[0-9]+$/, "Must be only digits")
           .min(4, "Must be 4 digits")
           .max(4, "Must be 4 digits")
           .required("Apartment number is required"),
-        post_no: Yup.string()
-          .matches(/^[0-9]+$/, "Must be only digits")
+        post_no: 
+        Yup.string() // bug: trim for removing whitespace did not work (line 46)! 
+          // .matches(/^[0-9]+$/, "Must be only digits")
           .min(5, "Must be 5 digits")
-          .max(5, "Must be 5 digits")
+          .max(6, "Must be 5 digits")
           .required("Post number is required"),
         post_ort: Yup.string()
           .max(27, "Must not exceed 27 characters")
-          .required("Required"),
+          .required("City is Required"),
       })}
       onSubmit={(values) => {
+        values.post_no=values.post_no.replace(/\s/g, ""); 
         kontaktCallback(values);
       }}
     >
       {(formik) => (
         <Form onSubmit={formik.handleSubmit}>
-          <h2>3. Kontaktadress</h2>
+          <h2>3. {strings.contact}</h2>
 
-          <label htmlFor="c_o_address"> C/O (Optional)</label>
+          <label htmlFor="c_o_address"> {strings.c_o}</label>
           <Field
             id="c_o_address"
             type="text"
@@ -58,12 +61,12 @@ export const Kontaktadress = ({ kontaktCallback }) => {
             <div className="error">{formik.errors.c_o_address}</div>
           ) : null}
 
-          <label htmlFor="ort"> Ort</label>
+          <label htmlFor="ort"> {strings.city}</label>
           <Field id="ort" type="text" {...formik.getFieldProps("ort")} />
           {formik.touched.ort && formik.errors.ort ? (
             <div className="error">{formik.errors.ort}</div>
           ) : null}
-          <label htmlFor="ort"> Country and Region</label>
+          <label htmlFor="ort"> {strings.Country_and_region}</label>
 
           <div>
             <CountryDropdown
@@ -81,13 +84,13 @@ export const Kontaktadress = ({ kontaktCallback }) => {
             />
           </div>
 
-          <label htmlFor="street"> Street </label>
+          <label htmlFor="street"> {strings.street} </label>
           <Field id="street" type="text" {...formik.getFieldProps("street")} />
           {formik.touched.street && formik.errors.street ? (
             <div className="error">{formik.errors.street}</div>
           ) : null}
 
-          <label htmlFor="apartment_no"> Apartment Number </label>
+          <label htmlFor="apartment_no"> {strings.apartment_no} </label>
           <Field
             id="apartment_no"
             type="text"
@@ -97,7 +100,7 @@ export const Kontaktadress = ({ kontaktCallback }) => {
             <div className="error">{formik.errors.apartment_no}</div>
           ) : null}
 
-          <label htmlFor="post_no"> Post Number </label>
+          <label htmlFor="post_no"> {strings.post_no}</label>
           <Field
             id="post_no"
             type="text"
@@ -107,7 +110,7 @@ export const Kontaktadress = ({ kontaktCallback }) => {
             <div className="error">{formik.errors.post_no}</div>
           ) : null}
 
-          <label htmlFor="post_ort"> Post Ort </label>
+          <label htmlFor="post_ort"> {strings.post_ort}</label>
           <Field
             id="post_ort"
             type="text"
@@ -117,7 +120,7 @@ export const Kontaktadress = ({ kontaktCallback }) => {
             <div className="error">{formik.errors.post_ort}</div>
           ) : null}
 
-          <button type="submit">NEXT</button>
+          <button type="submit">{strings.next}</button>
         </Form>
       )}
     </Formik>
